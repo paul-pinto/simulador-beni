@@ -61,12 +61,14 @@ function downloadFile(filename, content, type = "application/json;charset=utf-8"
 
 function DualSlider({ value, onChange, leftColor, rightColor }) {
   return (
-    <div className="space-y-1">
+    <div className="space-y-2">
       <div className="flex items-center justify-between text-[22px] font-black leading-none">
         <span style={{ color: leftColor }}>{Math.round(value)}%</span>
         <span style={{ color: rightColor }}>{Math.round(100 - value)}%</span>
       </div>
-      <Slider value={[value]} min={0} max={100} step={1} onValueChange={(v) => onChange(v[0])} />
+      <div className="mx-auto w-full max-w-[520px]">
+        <Slider value={[value]} min={0} max={100} step={1} onValueChange={(v) => onChange(v[0])} />
+      </div>
     </div>
   );
 }
@@ -75,7 +77,7 @@ function RetentionSlider({ value, onChange, side = "left" }) {
   const isLeft = side === "left";
 
   return (
-    <div className="space-y-1">
+    <div className="space-y-2">
       <div className="flex items-center justify-between text-[22px] font-black leading-none">
         <span style={{ color: FINALISTAS.izquierda.color }}>
           {Math.round(isLeft ? value : 100 - value)}%
@@ -85,22 +87,24 @@ function RetentionSlider({ value, onChange, side = "left" }) {
         </span>
       </div>
 
-      <Slider
-        value={[value]}
-        min={0}
-        max={100}
-        step={1}
-        onValueChange={(v) => onChange(v[0])}
-      />
+      <div className="mx-auto w-full max-w-[680px]">
+        <Slider
+          value={[value]}
+          min={0}
+          max={100}
+          step={1}
+          onValueChange={(v) => onChange(v[0])}
+        />
+      </div>
     </div>
   );
 }
 
 function TurnoutSlider({ value, onChange }) {
   return (
-    <div className="space-y-1 pt-1">
+    <div className="space-y-2 pt-1">
       <div className="text-center text-[11px] font-bold uppercase tracking-wide text-zinc-700">Concurrencia</div>
-      <div className="flex items-center gap-2 px-6">
+      <div className="mx-auto flex w-full max-w-[520px] items-center gap-2">
         <span className="text-[10px] font-semibold text-zinc-600">0%</span>
         <div className="flex-1">
           <Slider value={[value]} min={0} max={100} step={1} onValueChange={(v) => onChange(v[0])} />
@@ -117,7 +121,7 @@ function FuenteCard({ fuente, state, setState }) {
   const derecha = transferidos - izquierda;
 
   return (
-    <motion.div layout initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }} className={`border bg-white p-3 shadow-sm rounded-2xl ${fuente.wide ? "md:col-span-2" : ""}`}>
+    <motion.div layout initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }} className={`border border-zinc-200 bg-white p-4 shadow-sm rounded-2xl ${fuente.wide ? "md:col-span-2" : ""}`}>
       <div className="mb-2 text-center">
         <div className="text-[15px] font-bold" style={{ color: fuente.color }}>{fuente.sigla}</div>
         <div className="text-[11px] font-semibold text-zinc-700">{fuente.nombre}</div>
@@ -186,7 +190,7 @@ export default function SimuladorBalotajeBeni() {
               </div>
             </div>
 
-            <Card className="rounded-3xl border shadow-sm">
+            <Card className="rounded-3xl border border-zinc-200 bg-white shadow-sm">
               <CardContent className="p-4 space-y-3">
                 <div className="text-center text-[12px] font-bold text-zinc-700">Retención {FINALISTAS.izquierda.sigla}</div>
                 <RetentionSlider value={retencionIzquierda} onChange={setRetencionIzquierda} side="left" />
@@ -194,7 +198,7 @@ export default function SimuladorBalotajeBeni() {
               </CardContent>
             </Card>
 
-            <Card className="rounded-3xl border shadow-sm">
+            <Card className="rounded-3xl border border-zinc-200 bg-white shadow-sm">
               <CardContent className="p-4 space-y-3">
                 <div className="text-center text-[12px] font-bold text-zinc-700">Retención {FINALISTAS.derecha.sigla}</div>
                 <RetentionSlider value={retencionDerecha} onChange={setRetencionDerecha} side="right" />
