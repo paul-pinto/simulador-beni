@@ -287,7 +287,11 @@ export default function SimuladorBalotajeBeni() {
         .votes { font-size: 19px; }
         .muted { color: var(--muted); }
         .small { font-size: 15px; }
-        .tiny { font-size: 14px; line-height: 1.45; }
+        .tiny {
+          font-size: 16px;
+          line-height: 1.6;
+          color: #52525b;
+        }
         .section-title { font-size: 18px; font-weight: 800; margin-bottom: 10px; }
         .row-between {
           display: flex;
@@ -340,31 +344,30 @@ export default function SimuladorBalotajeBeni() {
           gap: 8px;
         }
         button {
-          border: 1px solid #d4d4d8;
-          background: #ffffff;
+          border: 1px solid #e4e4e7;
+          background: #f9fafb;
           color: #111827;
-          padding: 10px 16px;
-          border-radius: 14px;
+          padding: 12px 16px;
+          border-radius: 16px;
           cursor: pointer;
           font-weight: 700;
           font-size: 15px;
           line-height: 1.15;
           transition: all .15s ease;
-          box-shadow: 0 1px 2px rgba(0,0,0,.04);
         }
         button:hover {
           transform: translateY(-1px);
           box-shadow: 0 4px 10px rgba(0,0,0,.08);
         }
         button.secondary {
-          background: #f4f4f5;
+          background: #f1f5f9;
+          border-color: #e2e8f0;
           color: #111827;
-          border-color: #e4e4e7;
         }
         button.outline {
-          background: #ffffff;
+          background: white;
+          border-color: #e4e4e7;
           color: #111827;
-          border-color: #d4d4d8;
         }
         input[type="range"] {
           width: 100%;
@@ -426,6 +429,10 @@ export default function SimuladorBalotajeBeni() {
           .slider-head { font-size: 24px; }
           .actions, .presets { gap: 12px; }
           .actions button, .presets button {
+          background: #f4f4f5;
+          border: 1px solid #e4e4e7;
+          color: #111827;
+        }
             flex: 1 1 calc(50% - 12px);
             justify-content: center;
             font-size: 15px;
