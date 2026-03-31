@@ -279,16 +279,16 @@ export default function SimuladorBalotajeBeni() {
         .legend-grid { grid-template-columns: 1fr 1fr 1fr; text-align: center; }
         .ballot-grid { grid-template-columns: 1fr 1fr; text-align: center; }
         .full { grid-column: 1 / -1; }
-        .sigla { font-size: 20px; font-weight: 800; }
+        .sigla { font-size: 22px; font-weight: 800; }
         .source-sigla { font-size: 18px; }
         
-        .nombre { font-size: 14px; font-weight: 700; color: #3f3f46; }
-        .big-pct { font-size: 56px; font-weight: 900; line-height: 1; margin-top: 4px; }
-        .votes { font-size: 18px; }
+        .nombre { font-size: 15px; font-weight: 700; color: #3f3f46; }
+        .big-pct { font-size: 58px; font-weight: 900; line-height: 1; margin-top: 4px; }
+        .votes { font-size: 19px; }
         .muted { color: var(--muted); }
-        .small { font-size: 14px; }
-        .tiny { font-size: 13px; }
-        .section-title { font-size: 16px; font-weight: 800; margin-bottom: 10px; }
+        .small { font-size: 15px; }
+        .tiny { font-size: 14px; line-height: 1.45; }
+        .section-title { font-size: 18px; font-weight: 800; margin-bottom: 10px; }
         .row-between {
           display: flex;
           justify-content: space-between;
@@ -340,29 +340,31 @@ export default function SimuladorBalotajeBeni() {
           gap: 8px;
         }
         button {
-          border: 2px solid #111827;
-          background: #111827;
-          color: white;
-          padding: 12px 18px;
-          border-radius: 16px;
+          border: 1px solid #d4d4d8;
+          background: #ffffff;
+          color: #111827;
+          padding: 10px 16px;
+          border-radius: 14px;
           cursor: pointer;
-          font-weight: 800;
-          font-size: 18px;
-          line-height: 1.1;
+          font-weight: 700;
+          font-size: 15px;
+          line-height: 1.15;
           transition: all .15s ease;
+          box-shadow: 0 1px 2px rgba(0,0,0,.04);
         }
         button:hover {
           transform: translateY(-1px);
+          box-shadow: 0 4px 10px rgba(0,0,0,.08);
         }
         button.secondary {
           background: #f4f4f5;
           color: #111827;
-          border-color: #d4d4d8;
+          border-color: #e4e4e7;
         }
         button.outline {
-          background: white;
+          background: #ffffff;
           color: #111827;
-          border-color: #111827;
+          border-color: #d4d4d8;
         }
         input[type="range"] {
           width: 100%;
@@ -386,8 +388,8 @@ export default function SimuladorBalotajeBeni() {
           box-shadow: 0 3px 10px rgba(0,0,0,.04);
           text-align: center;
         }
-        .source .name { font-size: 14px; font-weight: 700; color: #3f3f46; }
-        .source .votes-label { font-size: 14px; color: #52525b; }
+        .source .name { font-size: 15px; font-weight: 700; color: #3f3f46; }
+        .source .votes-label { font-size: 15px; color: #52525b; }
         .turnout-row {
           display: flex;
           align-items: center;
@@ -401,17 +403,38 @@ export default function SimuladorBalotajeBeni() {
           border: 1px solid #e4e4e7;
           background: #fafafa;
         }
-        .ballot-big { font-size: 44px; font-weight: 900; line-height: 1; margin-top: 4px; }
+        .ballot-big { font-size: 46px; font-weight: 900; line-height: 1; margin-top: 4px; }
         .footer-note {
           text-align: center;
-          font-size: 15px;
+          font-size: 16px;
           color: #3f3f46;
+          line-height: 1.45;
         }
         .mt10 { margin-top: 10px; }
         .votes-row { margin-top: 8px; font-size: 12px; color: #3f3f46; }
         .turnout-title { margin-top: 10px; font-weight: 800; color: #3f3f46; }
         @media (max-width: 900px) {
           .grid-top, .sources-grid, .stats-grid, .legend-grid, .candidate-grid, .ballot-grid { grid-template-columns: 1fr; }
+          .big-pct { font-size: 50px; }
+          .ballot-big { font-size: 40px; }
+          .sigla { font-size: 20px; }
+          .source-sigla { font-size: 18px; }
+          .nombre, .source .name { font-size: 15px; }
+          .votes, .source .votes-label, .small { font-size: 16px; }
+          .tiny { font-size: 15px; line-height: 1.55; }
+          .section-title { font-size: 20px; }
+          .slider-head { font-size: 24px; }
+          .actions, .presets { gap: 12px; }
+          .actions button, .presets button {
+            flex: 1 1 calc(50% - 12px);
+            justify-content: center;
+            font-size: 15px;
+            padding: 12px 14px;
+            border-radius: 14px;
+          }
+          .card { padding: 18px; }
+          .mini-box .value { font-size: 34px; }
+        }
           .big-pct { font-size: 48px; }
           .ballot-big { font-size: 38px; }
           .sigla { font-size: 18px; }
