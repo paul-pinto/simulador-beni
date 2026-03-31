@@ -71,6 +71,31 @@ function DualSlider({ value, onChange, leftColor, rightColor }) {
   );
 }
 
+function RetentionSlider({ value, onChange, side = "left" }) {
+  const isLeft = side === "left";
+
+  return (
+    <div className="space-y-1">
+      <div className="flex items-center justify-between text-[22px] font-black leading-none">
+        <span style={{ color: FINALISTAS.izquierda.color }}>
+          {Math.round(isLeft ? value : 100 - value)}%
+        </span>
+        <span style={{ color: FINALISTAS.derecha.color }}>
+          {Math.round(isLeft ? 100 - value : value)}%
+        </span>
+      </div>
+
+      <Slider
+        value={[value]}
+        min={0}
+        max={100}
+        step={1}
+        onValueChange={(v) => onChange(v[0])}
+      />
+    </div>
+  );
+}
+
 function TurnoutSlider({ value, onChange }) {
   return (
     <div className="space-y-1 pt-1">
@@ -164,7 +189,7 @@ export default function SimuladorBalotajeBeni() {
             <Card className="rounded-3xl border shadow-sm">
               <CardContent className="p-4 space-y-3">
                 <div className="text-center text-[12px] font-bold text-zinc-700">Retención {FINALISTAS.izquierda.sigla}</div>
-                <DualSlider value={retencionIzquierda} onChange={setRetencionIzquierda} leftColor={FINALISTAS.izquierda.color} rightColor={FINALISTAS.izquierda.color} />
+                <RetentionSlider value={retencionIzquierda} onChange={setRetencionIzquierda} side="left" />
                 <div className="text-center text-[11px] text-zinc-600">Porcentaje de su propio voto que conserva en segunda vuelta</div>
               </CardContent>
             </Card>
@@ -172,7 +197,7 @@ export default function SimuladorBalotajeBeni() {
             <Card className="rounded-3xl border shadow-sm">
               <CardContent className="p-4 space-y-3">
                 <div className="text-center text-[12px] font-bold text-zinc-700">Retención {FINALISTAS.derecha.sigla}</div>
-                <DualSlider value={retencionDerecha} onChange={setRetencionDerecha} leftColor={FINALISTAS.derecha.color} rightColor={FINALISTAS.derecha.color} />
+                <RetentionSlider value={retencionDerecha} onChange={setRetencionDerecha} side="right" />
                 <div className="text-center text-[11px] text-zinc-600">Porcentaje de su propio voto que conserva en segunda vuelta</div>
               </CardContent>
             </Card>
