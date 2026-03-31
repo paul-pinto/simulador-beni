@@ -350,7 +350,7 @@ export default function SimuladorBalotajeBeni() {
 
   .nombre { font-size: 15px; font-weight: 700; color: #3f3f46; }
 
-  /* 🔥 FIX DEFINITIVO */
+  /* 🔥 FIX TAMAÑOS */
   .big-pct,
   .ballot-big {
     font-size: 58px;
@@ -421,8 +421,6 @@ export default function SimuladorBalotajeBeni() {
   .mini-box .value {
     font-size: 30px;
     font-weight: 900;
-    line-height: 1;
-    margin: 4px 0;
   }
 
   .dashed {
@@ -432,43 +430,52 @@ export default function SimuladorBalotajeBeni() {
     text-align: center;
   }
 
-  .actions,
+  /* 🔥 BOTONES ARREGLADOS */
+  .actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  button {
+    width: 100%;
+    border-radius: 14px;
+    padding: 12px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all .15s ease;
+  }
+
+  button.outline {
+    background: white;
+    border-color: #111827;
+  }
+
+  button.outline:hover {
+    background: #111827;
+    color: white;
+  }
+
+  button.secondary {
+    background: #eef1f5;
+    border-color: #e2e8f0;
+  }
+
+  button.secondary:hover {
+    background: #e2e8f0;
+  }
+
   .presets {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
   }
 
-  button {
-    border: 1px solid #e4e4e7;
-    background: #f9fafb;
-    color: #111827;
-    padding: 12px 16px;
-    border-radius: 16px;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 1.15;
-    transition: all .15s ease;
-  }
-
-  button:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(0,0,0,.08);
-  }
-
-  button.secondary {
-    background: #f1f5f9;
-    border-color: #e2e8f0;
-  }
-
-  button.outline {
-    background: white;
-  }
-
   input[type="range"] {
     width: 100%;
-    accent-color: #71717a;
     cursor: pointer;
   }
 
@@ -505,11 +512,9 @@ export default function SimuladorBalotajeBeni() {
   .footer-note {
     text-align: center;
     font-size: 16px;
-    color: #3f3f46;
   }
 
-  /* ===== RESPONSIVE LIMPIO ===== */
-
+  /* RESPONSIVE */
   @media (max-width: 900px) {
     .grid-top,
     .sources-grid,
@@ -540,7 +545,7 @@ export default function SimuladorBalotajeBeni() {
     }
   }
 `}</style>
-
+  
       <div className="wrap">
         <div className="grid-top">
           <div className="card">
