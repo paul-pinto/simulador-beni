@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Slider } from "@/components/ui/slider";
 import { RefreshCcw, Save, Download, Sparkles } from "lucide-react";
 
 const fmtInt = new Intl.NumberFormat("es-BO");
@@ -58,22 +59,6 @@ function downloadFile(filename, content, type = "application/json;charset=utf-8"
   URL.revokeObjectURL(url);
 }
 
-// ✅ Slider simple y estable
-function RangeSlider({ value, min = 0, max = 100, step = 1, onChange }) {
-  return (
-    <input
-      type="range"
-      min={min}
-      max={max}
-      step={step}
-      value={value}
-      onChange={(e) => onChange(Number(e.target.value))}
-      className="h-2 w-full cursor-pointer appearance-none rounded-full bg-zinc-300"
-      style={{ accentColor: "#2563eb" }}
-    />
-  );
-}
-
 function DualSlider({ value, onChange, leftColor, rightColor }) {
   return (
     <div className="space-y-1">
@@ -81,7 +66,7 @@ function DualSlider({ value, onChange, leftColor, rightColor }) {
         <span style={{ color: leftColor }}>{Math.round(value)}%</span>
         <span style={{ color: rightColor }}>{Math.round(100 - value)}%</span>
       </div>
-      <RangeSlider value={value} min={0} max={100} step={1} onChange={onChange} />
+      <Slider value={[value]} min={0} max={100} step={1} onValueChange={(v) => onChange(v[0])} />
     </div>
   );
 }
@@ -93,7 +78,7 @@ function TurnoutSlider({ value, onChange }) {
       <div className="flex items-center gap-2 px-6">
         <span className="text-[10px] font-semibold text-zinc-600">0%</span>
         <div className="flex-1">
-          <RangeSlider value={value} min={0} max={100} step={1} onChange={onChange} />
+          <Slider value={[value]} min={0} max={100} step={1} onValueChange={(v) => onChange(v[0])} />
         </div>
         <span className="text-[10px] font-semibold text-zinc-600">100%</span>
       </div>
@@ -153,21 +138,63 @@ export default function SimuladorBalotajeBeni() {
   }, [retencionIzquierda, retencionDerecha, fuentes]);
 
   return (
-    <div className="p-6">
-      <h1 className="text-xl font-bold mb-4">Simulador Beni</h1>
+    <div className="min-h-screen bg-[#efefef] p-4 md:p-8">
+      <div className="mx-auto max-w-6xl space-y-4">
+        <Card className="rounded-3xl border-0 shadow-lg">
+          <CardContent className="p-5 space-y-5">
+            <div className="grid grid-cols-2 gap-6 text-center">
+              <div>
+                <div className="text-[18px] font-bold" style={{ color: FINALISTAS.izquierda.color }}>{FINALISTAS.izquierda.sigla}</div>
+                <div className="text-[12px] font-semibold text-zinc-700">{FINALISTAS.izquierda.nombre}</div>
+                <div className="mt-1 text-[50px] font-black leading-none" style={{ color: FINALISTAS.izquierda.color }}>
+                  {fmtPct(resultado.izquierdaPct)}
+                </div>
+                <div className="text-[15px] text-zinc-800">{fmtInt.format(resultado.izquierda)} votos</div>
+              </div>
+              <div>
+                <div className="text-[18px] font-bold" style={{ color: FINALISTAS.derecha.color }}>{FINALISTAS.derecha.sigla}</div>
+                <div className="text-[12px] font-semibold text-zinc-700">{FINALISTAS.derecha.nombre}</div>
+                <div className="mt-1 text-[50px] font-black leading-none" style={{ color: FINALISTAS.derecha.color }}>
+                  {fmtPct(resultado.derechaPct)}
+                </div>
+                <div className="text-[15px] text-zinc-800">{fmtInt.format(resultado.derecha)} votos</div>
+              </div>
+            </div>
 
-      <DualSlider value={retencionIzquierda} onChange={setRetencionIzquierda} leftColor="#f97316" rightColor="#f97316" />
-      <DualSlider value={retencionDerecha} onChange={setRetencionDerecha} leftColor="#ec4899" rightColor="#ec4899" />
+            <Card className="rounded-3xl border shadow-sm">
+              <CardContent className="p-4 space-y-3">
+                <div className="text-center text-[12px] font-bold text-zinc-700">Retención {FINALISTAS.izquierda.sigla}</div>
+                <DualSlider value={retencionIzquierda} onChange={setRetencionIzquierda} leftColor={FINALISTAS.izquierda.color} rightColor={FINALISTAS.izquierda.color} />
+                <div className="text-center text-[11px] text-zinc-600">Porcentaje de su propio voto que conserva en segunda vuelta</div>
+              </CardContent>
+            </Card>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+            <Card className="rounded-3xl border shadow-sm">
+              <CardContent className="p-4 space-y-3">
+                <div className="text-center text-[12px] font-bold text-zinc-700">Retención {FINALISTAS.derecha.sigla}</div>
+                <DualSlider value={retencionDerecha} onChange={setRetencionDerecha} leftColor={FINALISTAS.derecha.color} rightColor={FINALISTAS.derecha.color} />
+                <div className="text-center text-[11px] text-zinc-600">Porcentaje de su propio voto que conserva en segunda vuelta</div>
+              </CardContent>
+            </Card>
+          </CardContent>
+        </Card>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
         {FUENTES.map((f) => (
           <FuenteCard key={f.key} fuente={f} state={fuentes[f.key]} setState={(updater) => setFuentes((prev) => ({ ...prev, [f.key]: updater(prev[f.key]) }))} />
         ))}
       </div>
 
-      <div className="mt-6">
-        <div>PATRIA-UNIDOS: {fmtPct(resultado.izquierdaPct)}</div>
-        <div>MNR: {fmtPct(resultado.derechaPct)}</div>
+      <Card className="rounded-3xl border-0 shadow-md">
+          <CardContent className="p-4 text-center space-y-2">
+            <div className="text-[13px] text-zinc-700">
+              Votos válidos primera vuelta: <span className="font-bold">{fmtInt.format(VOTOS_VALIDOS)}</span> · Blancos: <span className="font-bold">{fmtInt.format(VOTOS_BLANCOS)}</span> · Nulos: <span className="font-bold">{fmtInt.format(VOTOS_NULOS)}</span>
+            </div>
+            <div className="text-[13px] text-zinc-700">
+              Emitidos: <span className="font-bold">{fmtInt.format(VOTOS_EMITIDOS)}</span> · Ausentes: <span className="font-bold">{fmtInt.format(AUSENTES)}</span> · Padrón: <span className="font-bold">{fmtInt.format(PADRON)}</span>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
