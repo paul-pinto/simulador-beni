@@ -406,7 +406,7 @@ export default function SimuladorBalotajeBeni() {
           border: 1px solid #e4e4e7;
           background: #fafafa;
         }
-        .ballot-big { font-size: 46px; font-weight: 900; line-height: 1; margin-top: 4px; }
+        .ballot-big { font-size: 58px; font-weight: 900; line-height: 1; margin-top: 4px; }
         .footer-note {
           text-align: center;
           font-size: 16px;
@@ -419,7 +419,7 @@ export default function SimuladorBalotajeBeni() {
         @media (max-width: 900px) {
           .grid-top, .sources-grid, .stats-grid, .legend-grid, .candidate-grid, .ballot-grid { grid-template-columns: 1fr; }
           .big-pct { font-size: 50px; }
-          .ballot-big { font-size: 40px; }
+          .ballot-big { font-size: 50px; }
           .sigla { font-size: 20px; }
           .source-sigla { font-size: 18px; }
           .nombre, .source .name { font-size: 15px; }
@@ -443,7 +443,7 @@ export default function SimuladorBalotajeBeni() {
           .mini-box .value { font-size: 34px; }
         }
           .big-pct { font-size: 48px; }
-          .ballot-big { font-size: 38px; }
+          .ballot-big { font-size: 48px; }
           .sigla { font-size: 18px; }
           .source-sigla { font-size: 17px; }
           .nombre, .source .name { font-size: 13px; }
@@ -461,7 +461,7 @@ export default function SimuladorBalotajeBeni() {
           .card { padding: 18px; }
         }
           .big-pct { font-size: 40px; }
-          .ballot-big { font-size: 28px; }
+          .ballot-big { font-size: 40px; }
         }
       `}</style>
 
