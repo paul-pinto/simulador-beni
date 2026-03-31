@@ -279,15 +279,16 @@ export default function SimuladorBalotajeBeni() {
         .legend-grid { grid-template-columns: 1fr 1fr 1fr; text-align: center; }
         .ballot-grid { grid-template-columns: 1fr 1fr; text-align: center; }
         .full { grid-column: 1 / -1; }
-        .sigla { font-size: 18px; font-weight: 800; }
-        .source-sigla { font-size: 15px; }
-        .nombre { font-size: 12px; font-weight: 700; color: #3f3f46; }
-        .big-pct { font-size: 50px; font-weight: 900; line-height: 1; margin-top: 4px; }
-        .votes { font-size: 15px; }
+        .sigla { font-size: 20px; font-weight: 800; }
+        .source-sigla { font-size: 18px; }
+        
+        .nombre { font-size: 14px; font-weight: 700; color: #3f3f46; }
+        .big-pct { font-size: 56px; font-weight: 900; line-height: 1; margin-top: 4px; }
+        .votes { font-size: 18px; }
         .muted { color: var(--muted); }
-        .small { font-size: 12px; }
-        .tiny { font-size: 11px; }
-        .section-title { font-size: 14px; font-weight: 800; margin-bottom: 10px; }
+        .small { font-size: 14px; }
+        .tiny { font-size: 13px; }
+        .section-title { font-size: 16px; font-weight: 800; margin-bottom: 10px; }
         .row-between {
           display: flex;
           justify-content: space-between;
@@ -339,22 +340,29 @@ export default function SimuladorBalotajeBeni() {
           gap: 8px;
         }
         button {
-          border: 0;
+          border: 2px solid #111827;
           background: #111827;
           color: white;
-          padding: 10px 14px;
-          border-radius: 14px;
+          padding: 12px 18px;
+          border-radius: 16px;
           cursor: pointer;
-          font-weight: 700;
+          font-weight: 800;
+          font-size: 18px;
+          line-height: 1.1;
+          transition: all .15s ease;
+        }
+        button:hover {
+          transform: translateY(-1px);
         }
         button.secondary {
-          background: #e4e4e7;
+          background: #f4f4f5;
           color: #111827;
+          border-color: #d4d4d8;
         }
         button.outline {
           background: white;
           color: #111827;
-          border: 1px solid #d4d4d8;
+          border-color: #111827;
         }
         input[type="range"] {
           width: 100%;
@@ -378,8 +386,8 @@ export default function SimuladorBalotajeBeni() {
           box-shadow: 0 3px 10px rgba(0,0,0,.04);
           text-align: center;
         }
-        .source .name { font-size: 11px; font-weight: 700; color: #3f3f46; }
-        .source .votes-label { font-size: 12px; color: #52525b; }
+        .source .name { font-size: 14px; font-weight: 700; color: #3f3f46; }
+        .source .votes-label { font-size: 14px; color: #52525b; }
         .turnout-row {
           display: flex;
           align-items: center;
@@ -393,10 +401,10 @@ export default function SimuladorBalotajeBeni() {
           border: 1px solid #e4e4e7;
           background: #fafafa;
         }
-        .ballot-big { font-size: 34px; font-weight: 900; line-height: 1; margin-top: 4px; }
+        .ballot-big { font-size: 44px; font-weight: 900; line-height: 1; margin-top: 4px; }
         .footer-note {
           text-align: center;
-          font-size: 13px;
+          font-size: 15px;
           color: #3f3f46;
         }
         .mt10 { margin-top: 10px; }
@@ -404,6 +412,24 @@ export default function SimuladorBalotajeBeni() {
         .turnout-title { margin-top: 10px; font-weight: 800; color: #3f3f46; }
         @media (max-width: 900px) {
           .grid-top, .sources-grid, .stats-grid, .legend-grid, .candidate-grid, .ballot-grid { grid-template-columns: 1fr; }
+          .big-pct { font-size: 48px; }
+          .ballot-big { font-size: 38px; }
+          .sigla { font-size: 18px; }
+          .source-sigla { font-size: 17px; }
+          .nombre, .source .name { font-size: 13px; }
+          .votes, .source .votes-label, .small { font-size: 15px; }
+          .tiny { font-size: 12px; }
+          .section-title { font-size: 18px; }
+          .slider-head { font-size: 24px; }
+          .actions, .presets { gap: 10px; }
+          .actions button, .presets button {
+            flex: 1 1 220px;
+            justify-content: center;
+            font-size: 16px;
+            padding: 14px 16px;
+          }
+          .card { padding: 18px; }
+        }
           .big-pct { font-size: 40px; }
           .ballot-big { font-size: 28px; }
         }
