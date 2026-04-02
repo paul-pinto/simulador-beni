@@ -679,9 +679,9 @@ export default function SimuladorBalotajeBeni() {
             </div>
 
             <div className="actions" style={{ marginTop: 14 }}>
-              <button className="outline" onClick={reset}>Resetear</button>
-              <button className="outline" onClick={saveScenario}>Guardar escenario</button>
-              <button onClick={exportJSON}>Exportar JSON</button>
+              <button className="secondary" onClick={reset}>Resetear</button>
+              <button className="secondary" onClick={saveScenario}>Guardar escenario</button>
+              <button className="secondary" onClick={exportJSON}>Exportar JSON</button>
               <button className="secondary" onClick={exportCSV}>Exportar CSV</button>
             </div>
           </div>
@@ -691,11 +691,12 @@ export default function SimuladorBalotajeBeni() {
           <div className="section-title">Escenarios rápidos</div>
           <div className="presets">
             {Object.entries(PRESETS).map(([key, preset]) => (
-              <button key={key} className="outline" onClick={() => applyPreset(preset)}>
+              <button key={key} className="secondary" onClick={() => applyPreset(preset)}>
                 {preset.nombre}
               </button>
             ))}
           </div>
+          
           <div className="presets" style={{ marginTop: 8 }}>
             {saved.map((item, i) => (
               <button key={`${item.nombre}-${i}`} className="secondary" onClick={() => applyPreset(item)}>
