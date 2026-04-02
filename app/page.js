@@ -41,7 +41,7 @@ const FUENTES = [
 
 const PRESETS = {
   optimista_eguez: {
-    nombre: "Escenario optimista Egüez",
+    nombre: "Escenario optimista PATRIA-UNIDOS",
     retencionIzquierda: 96,
     retencionDerecha: 90,
     fuentes: {
